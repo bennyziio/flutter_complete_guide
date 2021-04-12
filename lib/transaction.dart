@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+// pjh20210412 transaction
 class Transaction {
   final String id;
   final String title;
