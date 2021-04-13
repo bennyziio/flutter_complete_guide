@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -30,6 +30,12 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
+  // pjh20210413 bad practice
+  // String titleInput;
+  // String amountInput;
+  // pjh20210413 Solution
+  final titleController = TextEditingController();
+  final amountcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // pjh20210413 mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -47,6 +53,43 @@ class MyHomePage extends StatelessWidget {
               color: Colors.blue,
               child: Text('CHART!'),
               elevation: 5,
+            ),
+          ),
+          // pjh20210413
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+                    // pjh20210413 bad practice
+                    // onChanged: (val) {
+                    //   titleInput = val;
+                    // },
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountcontroller,
+                    // pjh20210413 bad practice
+                    // onChanged: (val) => amountInput = val,
+                  ),
+                  FlatButton(
+                    child: Text('Add Transaction'),
+                    textColor: Colors.purple,
+                    onPressed: () {
+                      // pjh20210413 solution
+                      print(titleController.text);
+                      // pjh20210413 bad practice
+                      // print(titleInput);
+                      // print(amountInput);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
@@ -70,7 +113,10 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        tx.amount.toString(),
+                        // pjh20210413
+                        // add $ as a character put \ in front of $
+                        // and curly braclet acts as a string
+                        '\$${tx.amount}',
                         // pjh20210412 TextStyle
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -91,7 +137,11 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          // pjh20210413
+                          // DateFormat Patterns
+                          // look more nicer date format
+                          DateFormat.yMMMMd().format(tx.date),
+                          // pjh20210413 tx.date.toString(),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
