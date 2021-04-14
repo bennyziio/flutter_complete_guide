@@ -41,7 +41,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: const Text('Flutter App'),
       ),
       body: Column(
         // pjh20210413 mainAxisAlignment: MainAxisAlignment.start,
@@ -49,22 +49,22 @@ class MyHomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
-              child: Text('CHART!'),
               elevation: 5,
+              child: Text('CHART!'),
             ),
           ),
           // pjh20210413
           Card(
             elevation: 5,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title'),
                     controller: titleController,
                     // pjh20210413 bad practice
                     // onChanged: (val) {
@@ -72,13 +72,12 @@ class MyHomePage extends StatelessWidget {
                     // },
                   ),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
+                    decoration: const InputDecoration(labelText: 'Amount'),
                     controller: amountcontroller,
                     // pjh20210413 bad practice
                     // onChanged: (val) => amountInput = val,
                   ),
                   FlatButton(
-                    child: Text('Add Transaction'),
                     textColor: Colors.purple,
                     onPressed: () {
                       // pjh20210413 solution
@@ -87,6 +86,7 @@ class MyHomePage extends StatelessWidget {
                       // print(titleInput);
                       // print(amountInput);
                     },
+                    child: const Text('Add Transaction'),
                   ),
                 ],
               ),
@@ -101,7 +101,7 @@ class MyHomePage extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       // pjh20210412 Container margin setting
-                      margin: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 15,
                       ),
@@ -111,14 +111,14 @@ class MyHomePage extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Text(
                         // pjh20210413
                         // add $ as a character put \ in front of $
                         // and curly braclet acts as a string
                         '\$${tx.amount}',
                         // pjh20210412 TextStyle
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.purple,
@@ -131,7 +131,7 @@ class MyHomePage extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           tx.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -142,7 +142,7 @@ class MyHomePage extends StatelessWidget {
                           // look more nicer date format
                           DateFormat.yMMMMd().format(tx.date),
                           // pjh20210413 tx.date.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
